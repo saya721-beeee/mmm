@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AQUA SERUM — Hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Noto+Serif+JP:wght@200;300;400&family=Inter:wght@200;300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ice:    #c8e8f5;
+    --deep:   #0a1e35;
+    --mist:   rgba(200, 232, 245, 0.12);
+    --glow:   rgba(160, 220, 255, 0.35);
+  }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: var(--deep);
+  }
+
+  /* ── HERO WRAPPER ── */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+
+  /* ── BG IMAGE ── */
+  .hero__bg {
+    position: absolute;
+    inset: 0;
+    background: url('/mnt/user-data/uploads/IMG_7835.PNG') center center / cover no-repeat;
+    z-index: 0;
+  }
+
+  /* subtle dark gradient so text pops */
+  .hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to top,  rgba(5, 14, 30, 0.82) 0%, rgba(5, 14, 30, 0.1) 55%),
+      linear-gradient(to right, rgba(5, 14, 30, 0.45) 0%, transparent 65%);
+  }
+
+  /* ── CONTENT ── */
+  .hero__content {
+    position: relative;
+    z-index: 1;
+    padding: 0 6vw 7vh;
+    max-width: 680px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* eyebrow label */
+  .hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ice);
+    opacity: 0.75;
+  }
+  .hero__eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--ice);
+    opacity: 0.6;
+  }
+
+  /* main heading — Japanese serif */
+  .hero__heading {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 200;
+    font-size: clamp(32px, 5.5vw, 56px);
+    line-height: 1.55;
+    color: #fff;
+    letter-spacing: 0.05em;
+  }
+  .hero__heading em {
+    font-style: italic;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 1.15em;
+    color: var(--ice);
+    letter-spacing: 0.03em;
+  }
+
+  /* description */
+  .hero__desc {
+    font-family: 'Noto Serif JP', serif;
+    font-weight: 200;
+    font-size: clamp(12px, 1.3vw, 14px);
+    line-height: 2;
+    color: rgba(200, 232, 245, 0.78);
+    letter-spacing: 0.06em;
+    max-width: 420px;
+  }
+
+  /* CTA row */
+  .hero__cta-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    margin-top: 8px;
+  }
+
+  .btn-primary {
+    font-family: 'Inter', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--deep);
+    background: var(--ice);
+    border: none;
+    padding: 14px 36px;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  .btn-primary:hover { background: #fff; }
+
+  .btn-ghost {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ice);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    opacity: 0.75;
+    transition: opacity 0.25s;
+  }
+  .btn-ghost:hover { opacity: 1; }
+  .btn-ghost::after {
+    content: '→';
+    font-size: 14px;
+  }
+
+  /* ── NAV ── */
+  .nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 36px 6vw;
+  }
+
+  .nav__logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 22px;
+    letter-spacing: 0.22em;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  .nav__logo span {
+    font-style: italic;
+    color: var(--ice);
+  }
+
+  .nav__links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+  .nav__links a {
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(200, 232, 245, 0.7);
+    text-decoration: none;
+    transition: color 0.25s;
+  }
+  .nav__links a:hover { color: #fff; }
+
+  /* ── SCROLL INDICATOR ── */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    right: 6vw;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(200, 232, 245, 0.5);
+    writing-mode: vertical-rl;
+  }
+  .scroll-hint::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, rgba(200,232,245,0.5), transparent);
+    animation: drip 1.8s ease-in-out infinite;
+  }
+  @keyframes drip {
+    0%   { transform: scaleY(0); transform-origin: top; opacity: 1; }
+    50%  { transform: scaleY(1); transform-origin: top; opacity: 1; }
+    100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+  }
+
+  /* ── FADE-IN ANIMATION ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero__eyebrow { animation: fadeUp 0.9s 0.2s both ease-out; }
+  .hero__heading  { animation: fadeUp 0.9s 0.45s both ease-out; }
+  .hero__desc     { animation: fadeUp 0.9s 0.7s both ease-out; }
+  .hero__cta-row  { animation: fadeUp 0.9s 0.9s both ease-out; }
+
+  /* mobile */
+  @media (max-width: 480px) {
+    .nav__links { display: none; }
+    .hero__content { padding: 0 5vw 9vh; }
+    .scroll-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="hero__bg"></div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav__logo">AQUA<span>lab</span></div>
+    <ul class="nav__links">
+      <li><a href="#">Serum</a></li>
+      <li><a href="#">Science</a></li>
+      <li><a href="#">Ritual</a></li>
+      <li><a href="#">Shop</a></li>
+    </ul>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="hero__content">
+    <p class="hero__eyebrow">Deep Hydration Concentrate</p>
+
+    <h1 class="hero__heading">
+      深海の静けさを、<br>
+      肌の奥へ。<br>
+      <em>Glacial Serum</em>
+    </h1>
+
+    <p class="hero__desc">
+      極限の冷水から抽出した氷河エキスが、<br>
+      乾いた肌細胞に静かに浸透し、<br>
+      24時間にわたって潤いを閉じ込めます。
+    </p>
+
+    <div class="hero__cta-row">
+      <button class="btn-primary">今すぐ購入</button>
+      <button class="btn-ghost">成分を見る</button>
+    </div>
+  </div>
+
+  <!-- SCROLL HINT -->
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+</body>
+</html>
